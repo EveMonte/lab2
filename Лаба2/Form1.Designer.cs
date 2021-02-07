@@ -30,8 +30,6 @@
         {
             this.Year = new System.Windows.Forms.NumericUpDown();
             this.DisciplineName = new System.Windows.Forms.TextBox();
-            this.NumberOfLections = new System.Windows.Forms.TextBox();
-            this.NumberOfLaboratories = new System.Windows.Forms.TextBox();
             this.Auditory = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.Exam = new System.Windows.Forms.RadioButton();
@@ -63,7 +61,16 @@
             this.label18 = new System.Windows.Forms.Label();
             this.NameOfBook = new System.Windows.Forms.TextBox();
             this.Author = new System.Windows.Forms.TextBox();
+            this.NumberOfLections = new System.Windows.Forms.TrackBar();
+            this.NumberOfLaboratories = new System.Windows.Forms.TrackBar();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.ErrorLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Year)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumberOfLections)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumberOfLaboratories)).BeginInit();
             this.SuspendLayout();
             // 
             // Year
@@ -95,20 +102,6 @@
             this.DisciplineName.Size = new System.Drawing.Size(128, 20);
             this.DisciplineName.TabIndex = 1;
             // 
-            // NumberOfLections
-            // 
-            this.NumberOfLections.Location = new System.Drawing.Point(135, 161);
-            this.NumberOfLections.Name = "NumberOfLections";
-            this.NumberOfLections.Size = new System.Drawing.Size(128, 20);
-            this.NumberOfLections.TabIndex = 2;
-            // 
-            // NumberOfLaboratories
-            // 
-            this.NumberOfLaboratories.Location = new System.Drawing.Point(135, 191);
-            this.NumberOfLaboratories.Name = "NumberOfLaboratories";
-            this.NumberOfLaboratories.Size = new System.Drawing.Size(128, 20);
-            this.NumberOfLaboratories.TabIndex = 3;
-            // 
             // Auditory
             // 
             this.Auditory.Location = new System.Drawing.Point(499, 152);
@@ -126,7 +119,7 @@
             // Exam
             // 
             this.Exam.AutoSize = true;
-            this.Exam.Location = new System.Drawing.Point(194, 221);
+            this.Exam.Location = new System.Drawing.Point(194, 298);
             this.Exam.Name = "Exam";
             this.Exam.Size = new System.Drawing.Size(69, 17);
             this.Exam.TabIndex = 7;
@@ -137,7 +130,7 @@
             // Offset
             // 
             this.Offset.AutoSize = true;
-            this.Offset.Location = new System.Drawing.Point(135, 221);
+            this.Offset.Location = new System.Drawing.Point(135, 298);
             this.Offset.Name = "Offset";
             this.Offset.Size = new System.Drawing.Size(53, 17);
             this.Offset.TabIndex = 9;
@@ -180,11 +173,11 @@
             // 
             // SendAll
             // 
-            this.SendAll.Location = new System.Drawing.Point(62, 307);
+            this.SendAll.Location = new System.Drawing.Point(62, 341);
             this.SendAll.Name = "SendAll";
             this.SendAll.Size = new System.Drawing.Size(201, 46);
             this.SendAll.TabIndex = 14;
-            this.SendAll.Text = "Отправить";
+            this.SendAll.Text = "Создать экземпляр класса";
             this.SendAll.UseVisualStyleBackColor = true;
             this.SendAll.Click += new System.EventHandler(this.SendAll_Click);
             // 
@@ -218,7 +211,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 158);
+            this.label5.Location = new System.Drawing.Point(7, 184);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(105, 26);
             this.label5.TabIndex = 18;
@@ -227,7 +220,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 188);
+            this.label6.Location = new System.Drawing.Point(4, 253);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 26);
             this.label6.TabIndex = 19;
@@ -236,7 +229,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 223);
+            this.label7.Location = new System.Drawing.Point(7, 300);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(76, 13);
             this.label7.TabIndex = 20;
@@ -383,11 +376,86 @@
             this.Author.Size = new System.Drawing.Size(100, 20);
             this.Author.TabIndex = 38;
             // 
+            // NumberOfLections
+            // 
+            this.NumberOfLections.Location = new System.Drawing.Point(135, 184);
+            this.NumberOfLections.Maximum = 20;
+            this.NumberOfLections.Minimum = 1;
+            this.NumberOfLections.Name = "NumberOfLections";
+            this.NumberOfLections.Size = new System.Drawing.Size(104, 45);
+            this.NumberOfLections.TabIndex = 39;
+            this.NumberOfLections.Value = 1;
+            this.NumberOfLections.Scroll += new System.EventHandler(this.NumberOfLections_Scroll);
+            // 
+            // NumberOfLaboratories
+            // 
+            this.NumberOfLaboratories.Location = new System.Drawing.Point(135, 247);
+            this.NumberOfLaboratories.Maximum = 20;
+            this.NumberOfLaboratories.Name = "NumberOfLaboratories";
+            this.NumberOfLaboratories.Size = new System.Drawing.Size(104, 45);
+            this.NumberOfLaboratories.TabIndex = 40;
+            this.NumberOfLaboratories.Value = 1;
+            this.NumberOfLaboratories.Scroll += new System.EventHandler(this.NumberOfLaboratories_Scroll);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(164, 168);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(61, 13);
+            this.label19.TabIndex = 41;
+            this.label19.Text = "Значение: ";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(164, 232);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(61, 13);
+            this.label20.TabIndex = 42;
+            this.label20.Text = "Значение: ";
+            // 
+            // ErrorLabel
+            // 
+            this.ErrorLabel.AutoSize = true;
+            this.ErrorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ErrorLabel.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.ErrorLabel.Location = new System.Drawing.Point(499, 373);
+            this.ErrorLabel.Name = "ErrorLabel";
+            this.ErrorLabel.Size = new System.Drawing.Size(0, 24);
+            this.ErrorLabel.TabIndex = 43;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(62, 393);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(201, 45);
+            this.button1.TabIndex = 44;
+            this.button1.Text = "Прочитать из файла";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(269, 392);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(199, 46);
+            this.button2.TabIndex = 45;
+            this.button2.Text = "Записать в файл";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ErrorLabel);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.NumberOfLaboratories);
+            this.Controls.Add(this.NumberOfLections);
             this.Controls.Add(this.Author);
             this.Controls.Add(this.NameOfBook);
             this.Controls.Add(this.label18);
@@ -419,13 +487,13 @@
             this.Controls.Add(this.Exam);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.Auditory);
-            this.Controls.Add(this.NumberOfLaboratories);
-            this.Controls.Add(this.NumberOfLections);
             this.Controls.Add(this.DisciplineName);
             this.Controls.Add(this.Year);
             this.Name = "Form1";
             this.Text = "A lot of management elements";
             ((System.ComponentModel.ISupportInitialize)(this.Year)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumberOfLections)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumberOfLaboratories)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -435,8 +503,6 @@
 
         private System.Windows.Forms.NumericUpDown Year;
         private System.Windows.Forms.TextBox DisciplineName;
-        private System.Windows.Forms.TextBox NumberOfLections;
-        private System.Windows.Forms.TextBox NumberOfLaboratories;
         private System.Windows.Forms.TextBox Auditory;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.RadioButton Exam;
@@ -468,6 +534,13 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox NameOfBook;
         private System.Windows.Forms.TextBox Author;
+        private System.Windows.Forms.TrackBar NumberOfLections;
+        private System.Windows.Forms.TrackBar NumberOfLaboratories;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label ErrorLabel;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

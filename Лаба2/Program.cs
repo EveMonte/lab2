@@ -6,12 +6,14 @@ using System.Windows.Forms;
 
 namespace Лаба2
 {
+    [Serializable]
     public class Book
     {
         public string Name { get; set; }
         public string Author { get; set; }
         public DateTime date { get; set; }
     }
+    [Serializable]
     public class Lecturer
     {
         public string Chair { get; set; }//such an interesting translation by Google Translator
@@ -20,6 +22,7 @@ namespace Лаба2
         public string Patronymic { get; set; }
         public string Auditory { get; set; }
     }
+    [Serializable]
     public class Discipline
     {
         private string name;
@@ -55,7 +58,7 @@ namespace Лаба2
         public int NumberOfLaboratories { get; set; }
         public string TypeOfControl { get; set; }
 
-        public Lecturer lecturer;
+        public Lecturer lecturer = new Lecturer();
         public List<Book> listOfLiterature = new List<Book>();
 
     }

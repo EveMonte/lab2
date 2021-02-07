@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Xml.Serialization;
+
 
 namespace Лаба2
 {
     public partial class Form1 : Form
     {
+        public List<Discipline> listOfDisciplines = new List<Discipline>();
+
         public Form1()
         {
             InitializeComponent();
@@ -38,45 +43,12 @@ namespace Лаба2
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ErrorLabel.Text = ex.Message;
             }
-            int numberForTryParse;
-            try
-            {
-                if (int.TryParse(NumberOfLaboratories.Text, out numberForTryParse))
-                {
-                    discipline.NumberOfLaboratories = numberForTryParse;
-                    NumberOfLaboratories.BackColor = Color.White;
-                }
-                else
-                {
-                    NumberOfLaboratories.BackColor = Color.Salmon;
-                    throw new Exception("Invalid number or empty field!");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-
-            }
-            try
-            {
-                if (int.TryParse(NumberOfLections.Text, out numberForTryParse))
-                {
-                    NumberOfLaboratories.BackColor = Color.White;
-                    discipline.NumberOfLections = numberForTryParse;
-                }
-                else
-                {
-                    NumberOfLections.BackColor = Color.Salmon;
-                    throw new Exception("Invalid number or empty field!");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-
-            }
+            int numberForTryParse;      
+            discipline.NumberOfLaboratories = NumberOfLaboratories.Value;
+            discipline.NumberOfLections = NumberOfLections.Value;
+            MessageBox.Show(NumberOfLaboratories.Value.ToString());
             discipline.Semestr = Semestr.SelectedIndex;
             discipline.Year = (int)Year.Value;
 
@@ -99,7 +71,7 @@ namespace Лаба2
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ErrorLabel.Text = ex.Message;
             }
             #endregion
 
@@ -114,12 +86,12 @@ namespace Лаба2
                 else
                 {
                     SecondName.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box!");
+                    throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch(Exception ex)
             {
-
+                ErrorLabel.Text = ex.Message;
             }
             try
             {
@@ -131,12 +103,12 @@ namespace Лаба2
                 else
                 {
                     NameOfLecturer.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box!");
+                    throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
             {
-
+                ErrorLabel.Text = ex.Message;
             }
 
             try
@@ -149,12 +121,12 @@ namespace Лаба2
                 else
                 {
                     Patronymic.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box!");
+                    throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
             {
-
+                ErrorLabel.Text = ex.Message;
             }
 
             try
@@ -167,12 +139,12 @@ namespace Лаба2
                 else
                 {
                     Chair.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box!");
+                    throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
             {
-
+                ErrorLabel.Text = ex.Message;
             }
 
             try
@@ -185,12 +157,12 @@ namespace Лаба2
                 else
                 {
                     Auditory.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box!");
+                    throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
             {
-
+                ErrorLabel.Text = ex.Message;
             }
             #endregion
 
@@ -207,12 +179,12 @@ namespace Лаба2
                 else
                 {
                     NameOfBook.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box!");
+                    throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
             {
-
+                ErrorLabel.Text = ex.Message;
             }
             try
             {
@@ -224,12 +196,12 @@ namespace Лаба2
                 else
                 {
                     Author.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box!");
+                    throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
             {
-
+                ErrorLabel.Text = ex.Message;
             }
             try
             {
@@ -241,16 +213,42 @@ namespace Лаба2
                 else
                 {
                     //NameOfBook.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box!");
+                    throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
             {
-
+                ErrorLabel.Text = ex.Message;
             }
             discipline.listOfLiterature.Add(book);
 
             #endregion
+
+            listOfDisciplines.Add(discipline);
+            XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
+            using (FileStream fileStream = new FileStream("Forms.xml", FileMode.OpenOrCreate))
+            {
+                xser.Serialize(fileStream, listOfDisciplines);
+            }
+        }
+
+        private void NumberOfLections_Scroll(object sender, EventArgs e)
+        {
+            label19.Text = String.Format("Значение: {0}", NumberOfLections.Value);
+        }
+
+        private void NumberOfLaboratories_Scroll(object sender, EventArgs e)
+        {
+            label20.Text = String.Format("Значение: {0}", NumberOfLaboratories.Value);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
+            using (FileStream fileStream = new FileStream("Forms.xml", FileMode.OpenOrCreate))
+            {
+                xser.Serialize(fileStream, listOfDisciplines);
+            }
         }
     }
 }
