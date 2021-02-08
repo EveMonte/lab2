@@ -44,6 +44,7 @@ namespace Лаба2
                 foreach (Discipline dis in newListOfDisciplines)
                 {
                     tabPage = new TabPage();
+                    tabPage.Text = "Page" + i;
                     //Thread.Sleep(1000);
                     Label label1 = new Label();
                     Label label2 = new Label();

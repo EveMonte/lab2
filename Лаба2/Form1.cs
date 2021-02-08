@@ -46,11 +46,9 @@ namespace Лаба2
             {
                 ErrorLabel.Text = ex.Message;
             }
-            int numberForTryParse;      
             discipline.NumberOfLaboratories = NumberOfLaboratories.Value;
             discipline.NumberOfLections = NumberOfLections.Value;
-            MessageBox.Show(NumberOfLaboratories.Value.ToString());
-            discipline.Semestr = Semestr.SelectedIndex;
+            discipline.Semestr = Int32.Parse(Semestr.Text);
             discipline.Year = (int)Year.Value;
 
             try

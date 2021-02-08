@@ -2,42 +2,62 @@
 <ArrayOfDiscipline xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Discipline>
     <lecturer>
-      <Chair>brhn</Chair>
-      <SecondName>btbt</SecondName>
-      <Name>tbn</Name>
-      <Patronymic>bre</Patronymic>
-      <Auditory>nur</Auditory>
+      <Chair>rgeg</Chair>
+      <SecondName>egeg</SecondName>
+      <Name>ge</Name>
+      <Patronymic>grq</Patronymic>
+      <Auditory>garg</Auditory>
     </lecturer>
     <listOfLiterature>
-      <Name>eyne</Name>
-      <Author>une</Author>
-      <date>2021-02-08T10:22:58.6661518+03:00</date>
+      <Name>egqg</Name>
+      <Author>rgr</Author>
+      <date>2021-02-08T13:29:58.7016803+03:00</date>
     </listOfLiterature>
-    <Name>rhhy</Name>
+    <Name>adgfwgw</Name>
     <Semestr>1</Semestr>
     <Year>2</Year>
-    <NumberOfLections>4</NumberOfLections>
+    <NumberOfLections>6</NumberOfLections>
     <NumberOfLaboratories>6</NumberOfLaboratories>
-    <TypeOfControl>экзамен</TypeOfControl>
+    <TypeOfControl>зачет</TypeOfControl>
   </Discipline>
   <Discipline>
     <lecturer>
-      <Chair>nuuu</Chair>
-      <SecondName>btbt</SecondName>
-      <Name>tbn</Name>
-      <Patronymic>bre</Patronymic>
-      <Auditory>nur</Auditory>
+      <Chair>rgeg</Chair>
+      <SecondName>egeg</SecondName>
+      <Name>ge</Name>
+      <Patronymic>grq</Patronymic>
+      <Auditory>garg</Auditory>
     </lecturer>
     <listOfLiterature>
-      <Name>eyne</Name>
-      <Author>une</Author>
-      <date>2020-02-08T10:22:58.6661518+03:00</date>
+      <Name>egqg</Name>
+      <Author>rgr</Author>
+      <date>2021-02-08T13:29:58.7016803+03:00</date>
     </listOfLiterature>
-    <Name>ruru</Name>
+    <Name>1124141</Name>
     <Semestr>1</Semestr>
     <Year>2</Year>
-    <NumberOfLections>4</NumberOfLections>
+    <NumberOfLections>6</NumberOfLections>
     <NumberOfLaboratories>6</NumberOfLaboratories>
-    <TypeOfControl>экзамен</TypeOfControl>
+    <TypeOfControl>зачет</TypeOfControl>
+  </Discipline>
+  <Discipline>
+    <lecturer>
+      <Chair>rgeg</Chair>
+      <SecondName>egeg</SecondName>
+      <Name>ge</Name>
+      <Patronymic>grq</Patronymic>
+      <Auditory>garg</Auditory>
+    </lecturer>
+    <listOfLiterature>
+      <Name>egqg</Name>
+      <Author>rgr</Author>
+      <date>2021-02-08T13:29:58.7016803+03:00</date>
+    </listOfLiterature>
+    <Name>1124141dgerher</Name>
+    <Semestr>1</Semestr>
+    <Year>2</Year>
+    <NumberOfLections>6</NumberOfLections>
+    <NumberOfLaboratories>6</NumberOfLaboratories>
+    <TypeOfControl>зачет</TypeOfControl>
   </Discipline>
 </ArrayOfDiscipline>
