@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml.Serialization;
+using System.Threading;
 
 
 namespace Лаба2
@@ -220,7 +221,7 @@ namespace Лаба2
             {
                 ErrorLabel.Text = ex.Message;
             }
-            discipline.listOfLiterature.Add(book);
+            discipline.listOfLiterature = book;
 
             #endregion
 
@@ -249,6 +250,12 @@ namespace Лаба2
             {
                 xser.Serialize(fileStream, listOfDisciplines);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            myForm form = new myForm();
+            form.Show();
         }
     }
 }

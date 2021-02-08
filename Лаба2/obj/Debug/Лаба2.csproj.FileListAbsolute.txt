@@ -8,3 +8,4 @@ C:\Users\User\Desktop\ООП_Весна\Лаба2\Лаба2\obj\Debug\Лаба2.
 C:\Users\User\Desktop\ООП_Весна\Лаба2\Лаба2\obj\Debug\Лаба2.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\ООП_Весна\Лаба2\Лаба2\obj\Debug\Лаба2.exe
 C:\Users\User\Desktop\ООП_Весна\Лаба2\Лаба2\obj\Debug\Лаба2.pdb
+C:\Users\User\Desktop\ООП_Весна\Лаба2\Лаба2\obj\Debug\Лаба2.myForm.resources

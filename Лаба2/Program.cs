@@ -59,7 +59,7 @@ namespace Лаба2
         public string TypeOfControl { get; set; }
 
         public Lecturer lecturer = new Lecturer();
-        public List<Book> listOfLiterature = new List<Book>();
+        public Book listOfLiterature = new Book();
 
     }
     static class Program
