@@ -149,7 +149,8 @@ namespace Лаба2
                 textBox2.BackColor = Color.White;
                 textBox3.BackColor = Color.White;
 
-                SearchResult page = new SearchResult(textBox1.Text);
+                SearchResult page = new SearchResult();
+                page.Tabs(textBox1.Text);
                 textBox1.Text = "";
                 page.Show();
             }
@@ -164,7 +165,8 @@ namespace Лаба2
                 textBox2.BackColor = Color.White;
                 textBox1.BackColor = Color.White;
                 textBox3.BackColor = Color.White;
-                SearchResult page = new SearchResult(Int32.Parse(textBox2.Text));
+                SearchResult page = new SearchResult();
+                page.Tabs(Int32.Parse(textBox2.Text));
                 textBox2.Text = "";
                 page.Show();
             }
@@ -179,7 +181,9 @@ namespace Лаба2
                 textBox3.BackColor = Color.White;
                 textBox2.BackColor = Color.White;
                 textBox1.BackColor = Color.White;
-                SearchResult page = new SearchResult(Int32.Parse(textBox3.Text), true);
+                SearchResult page = new SearchResult();
+                page.Tabs(Int32.Parse(textBox3.Text), true);
+
                 textBox3.Text = "";
                 page.Show();
             }
@@ -191,7 +195,8 @@ namespace Лаба2
         {
             if(textBox4.Text != "")
             {
-                SearchResult page = new SearchResult(textBox4.Text, true);
+                SearchResult page = new SearchResult();
+                page.Tabs(textBox4.Text, true);
                 textBox4.Text = "";
                 page.Show();
             }
@@ -201,7 +206,8 @@ namespace Лаба2
         {
             if (textBox5.Text != "")
             {
-                SearchResult page = new SearchResult(textBox5.Text[0], (int)Char.GetNumericValue(textBox5.Text, 3) +1 );
+                SearchResult page = new SearchResult();
+                page.Tabs(textBox5.Text[0], (int)Char.GetNumericValue(textBox5.Text, 3) - 1);
                 textBox5.Text = "";
                 page.Show();
             }
@@ -209,15 +215,38 @@ namespace Лаба2
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SearchResult page = new SearchResult(true, textBox6.Text[0]);
+            SearchResult page = new SearchResult();
+            page.Tabs(true, textBox6.Text[0]);
             textBox6.Text = "";
             page.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //SearchResult page = new SearchResult(textBox4.Text, textBox5[0], Int32.Parse(text));
-            //page.Show();
+            SearchResult page = new SearchResult();
+            page.Tabs(textBox4.Text, textBox5.Text[0], (int)Char.GetNumericValue(textBox5.Text, 3) - 1);
+            page.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            SearchResult page = new SearchResult();
+            page.sortBySecondName();
+            page.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            SearchResult page = new SearchResult();
+            page.sortByYear();
+            page.Show();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SearchResult page = new SearchResult();
+            page.sortBySpeciality();
+            page.Show();
         }
     }
 }

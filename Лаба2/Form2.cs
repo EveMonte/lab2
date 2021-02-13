@@ -17,41 +17,12 @@ namespace Лаба2
     {
         private TabControl tabControl1;
         private TabPage tabPage;
-        public SearchResult(string name)
+        public SearchResult()
         {
-            Tabs(name);
-            InitializeComponent();
-        }
-        public SearchResult(int semestr)
-        {
-            Tabs(semestr);
-            InitializeComponent();
-        }
-        public SearchResult(int year, bool i)
-        {
-            Tabs(year, i);
-            InitializeComponent();
-        }
-        public SearchResult(string diapazon, bool b)
-        {
-            Tabs(diapazon, b);
             InitializeComponent();
         }
 
-        public SearchResult(char ch, int pos)
-        {
-            Tabs(ch, pos);
-            InitializeComponent();
-        }
-        public SearchResult(bool b, char ch)
-        {
-            Tabs(b, ch);
-            /*string str = "Привет омтцоик пока";
-            Match match = new Regex("Привет {.*?} пока").Match(str);
-            Group group = match.Groups[1];
-            MessageBox.Show(group.Value.ToString());*/
-            InitializeComponent();
-        }
+
         public TabPage CreateTabPage(Discipline dis, int i)
         {
             tabPage = new TabPage();
@@ -131,7 +102,7 @@ namespace Лаба2
             }
             return tabPage;
         }
-        private void Tabs(string name)
+        public void Tabs(string name)
         {
 
             int i = 0;
@@ -173,7 +144,7 @@ namespace Лаба2
                     MessageBox.Show("Поиск не дал результатов, проверьте свой поисковый запрос!");
             }
         }
-        private void Tabs(int semestr)
+        public void Tabs(int semestr)
         {
 
             int i = 0;
@@ -215,7 +186,7 @@ namespace Лаба2
                     MessageBox.Show("Поиск не дал результатов, проверьте свой поисковый запрос!");
             }
         }
-        private void Tabs(int year, bool b)
+        public void Tabs(int year, bool b)
         {
 
             int i = 0;
@@ -257,7 +228,7 @@ namespace Лаба2
                     MessageBox.Show("Поиск не дал результатов, проверьте свой поисковый запрос!");
             }
         }
-        private void Tabs(bool b, char ch)
+        public void Tabs(bool b, char ch)
         {
             Regex r = new Regex(ch.ToString(), RegexOptions.IgnoreCase);
             //MatchCollection coll;
@@ -283,13 +254,13 @@ namespace Лаба2
                     }
                 }
                 MessageBox.Show(count.ToString());
-                
-                
+
+
             }
         }
-        private void Tabs(char ch, int pos)
+        public void Tabs(char ch, int pos)
         {
-            Regex reg = new Regex(@"\w{" + pos +@"}[" + ch + @"]");
+            Regex reg = new Regex(@"\w{" + pos + @"}[" + ch + @"]");
             Regex r = new Regex(@"\w[г]*");
             //MatchCollection coll;
             int i = 0;
@@ -333,9 +304,9 @@ namespace Лаба2
                     MessageBox.Show("Поиск не дал результатов, проверьте свой поисковый запрос!");
             }
         }
-        private void Tabs(string diapazon, bool b)
+        public void Tabs(string diapazon, bool b)
         {
-            Regex reg = new Regex(@"["+diapazon+@"]{1}");
+            Regex reg = new Regex(@"[" + diapazon + @"]{1}");
             //Regex r = new Regex(@"\w{2}[и]");
             //MatchCollection coll;
             int i = 0;
@@ -377,6 +348,137 @@ namespace Лаба2
                 }
                 else
                     MessageBox.Show("Поиск не дал результатов, проверьте свой поисковый запрос!");
+            }
+        }
+        public void Tabs(string diapazon, char ch, int pos)
+        {
+            Regex reg = new Regex(@"[" + diapazon + @"]{1}");
+            Regex r = new Regex(@"\w{" + pos + @"}[" + ch + @"]");
+
+            //MatchCollection coll;
+            int i = 0;
+            int count = 0;
+            tabControl1 = new TabControl();
+            tabControl1.Size = new Size(800, 400);
+            tabControl1.Location = new Point(1, 1);
+
+            //tabPage.Text = "Page";
+            XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
+            using (FileStream fileStream = new FileStream("Forms.xml", FileMode.OpenOrCreate))
+            {
+                List<Discipline> newListOfDisciplines = (List<Discipline>)xser.Deserialize(fileStream);
+                foreach (Discipline dis in newListOfDisciplines)
+                {
+                    if (reg.IsMatch(dis.Year.ToString()) && r.IsMatch(dis.Name))
+                    //if (r.IsMatch(dis.Name))
+                    {
+                        count++;
+                    }
+                }
+                Control[] tabPages = new Control[count];
+
+                foreach (Discipline dis in newListOfDisciplines)
+                {
+                    if (reg.IsMatch(dis.Year.ToString()) && r.IsMatch(dis.Name))
+                    //if (r.IsMatch(dis.Name))
+                    {
+                        tabPages[i] = CreateTabPage(dis, i);
+                        i++;
+                    }
+                }
+                if (count != 0)
+                {
+                    tabControl1.Controls.AddRange(tabPages);
+
+                    this.Controls.AddRange(new Control[] {
+    this.tabControl1});
+                }
+                else
+                    MessageBox.Show("Поиск не дал результатов, проверьте свой поисковый запрос!");
+            }
+        }
+        public void sortBySecondName()
+        {
+            tabControl1 = new TabControl();
+            tabControl1.Size = new Size(800, 400);
+            tabControl1.Location = new Point(1, 1);
+            int i = 0;
+
+            //tabPage.Text = "Page";
+            XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
+            using (FileStream fileStream = new FileStream("Forms.xml", FileMode.OpenOrCreate))
+            {
+                List<Discipline> newListOfDisciplines = (List<Discipline>)xser.Deserialize(fileStream);
+                Control[] tabPages = new Control[newListOfDisciplines.Count];
+
+                var newList = from dis in newListOfDisciplines
+                              orderby  dis.lecturer.Name descending
+                              select dis;
+                foreach(Discipline dis in newList)
+                {
+                    tabPages[i] = CreateTabPage(dis, i);
+                    i++;
+                }
+                tabControl1.Controls.AddRange(tabPages);
+
+                this.Controls.AddRange(new Control[] {
+    this.tabControl1});
+            }
+        }
+        public void sortByYear()
+        {
+            tabControl1 = new TabControl();
+            tabControl1.Size = new Size(800, 400);
+            tabControl1.Location = new Point(1, 1);
+            int i = 0;
+
+            //tabPage.Text = "Page";
+            XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
+            using (FileStream fileStream = new FileStream("Forms.xml", FileMode.OpenOrCreate))
+            {
+                List<Discipline> newListOfDisciplines = (List<Discipline>)xser.Deserialize(fileStream);
+                Control[] tabPages = new Control[newListOfDisciplines.Count];
+
+                var newList = from dis in newListOfDisciplines
+                              orderby dis.Year
+                              select dis;
+                foreach (Discipline dis in newList)
+                {
+                    tabPages[i] = CreateTabPage(dis, i);
+                    i++;
+                }
+                tabControl1.Controls.AddRange(tabPages);
+
+                this.Controls.AddRange(new Control[] {
+    this.tabControl1});
+            }
+        }
+        public void sortBySpeciality()
+        {
+            tabControl1 = new TabControl();
+            tabControl1.Size = new Size(800, 400);
+            tabControl1.Location = new Point(1, 1);
+            int i = 0;
+
+            //tabPage.Text = "Page";
+            XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
+            using (FileStream fileStream = new FileStream("Forms.xml", FileMode.OpenOrCreate))
+            {
+                List<Discipline> newListOfDisciplines = (List<Discipline>)xser.Deserialize(fileStream);
+                Control[] tabPages = new Control[newListOfDisciplines.Count];
+
+                var newList = from dis in newListOfDisciplines
+                              orderby dis.Speciality descending
+                              select dis;
+                foreach (Discipline dis in newList)
+                {
+                    tabPages[i] = CreateTabPage(dis, i);
+                    i++;
+                }
+                tabControl1.Controls.AddRange(tabPages);
+
+                this.Controls.AddRange(new Control[] {
+    this.tabControl1});
             }
         }
     }
