@@ -173,7 +173,7 @@
             // 
             // SendAll
             // 
-            this.SendAll.Location = new System.Drawing.Point(62, 341);
+            this.SendAll.Location = new System.Drawing.Point(24, 341);
             this.SendAll.Name = "SendAll";
             this.SendAll.Size = new System.Drawing.Size(201, 46);
             this.SendAll.TabIndex = 14;
@@ -427,7 +427,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(62, 393);
+            this.button1.Location = new System.Drawing.Point(24, 393);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(201, 45);
             this.button1.TabIndex = 44;
@@ -437,9 +437,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(269, 392);
+            this.button2.Location = new System.Drawing.Point(231, 341);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(199, 46);
+            this.button2.Size = new System.Drawing.Size(89, 97);
             this.button2.TabIndex = 45;
             this.button2.Text = "Записать в файл";
             this.button2.UseVisualStyleBackColor = true;

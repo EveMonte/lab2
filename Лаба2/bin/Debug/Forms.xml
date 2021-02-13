@@ -2,62 +2,62 @@
 <ArrayOfDiscipline xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Discipline>
     <lecturer>
-      <Chair>rgeg</Chair>
-      <SecondName>egeg</SecondName>
-      <Name>ge</Name>
-      <Patronymic>grq</Patronymic>
-      <Auditory>garg</Auditory>
+      <Chair>орьмдори</Chair>
+      <SecondName>Новосельская</SecondName>
+      <Name>орпидблб</Name>
+      <Patronymic>лоиьгнаслбьпр</Patronymic>
+      <Auditory>301-4</Auditory>
     </lecturer>
     <listOfLiterature>
-      <Name>egqg</Name>
-      <Author>rgr</Author>
-      <date>2021-02-08T13:29:58.7016803+03:00</date>
+      <Name>онгдо</Name>
+      <Author>енпролд</Author>
+      <date>2021-01-30T18:42:36</date>
     </listOfLiterature>
-    <Name>adgfwgw</Name>
-    <Semestr>1</Semestr>
+    <Name>КГиД</Name>
+    <Semestr>2</Semestr>
     <Year>2</Year>
-    <NumberOfLections>6</NumberOfLections>
-    <NumberOfLaboratories>6</NumberOfLaboratories>
+    <NumberOfLections>16</NumberOfLections>
+    <NumberOfLaboratories>20</NumberOfLaboratories>
     <TypeOfControl>зачет</TypeOfControl>
   </Discipline>
   <Discipline>
     <lecturer>
-      <Chair>rgeg</Chair>
-      <SecondName>egeg</SecondName>
-      <Name>ge</Name>
-      <Patronymic>grq</Patronymic>
-      <Auditory>garg</Auditory>
+      <Chair>ebq</Chair>
+      <SecondName>egwrgя</SecondName>
+      <Name>egqg</Name>
+      <Patronymic>ebqb</Patronymic>
+      <Auditory>252</Auditory>
     </lecturer>
     <listOfLiterature>
-      <Name>egqg</Name>
-      <Author>rgr</Author>
-      <date>2021-02-08T13:29:58.7016803+03:00</date>
+      <Name>ebиb</Name>
+      <Author>bebrae</Author>
+      <date>2021-01-30T18:42:36</date>
     </listOfLiterature>
-    <Name>1124141</Name>
+    <Name>ggggg</Name>
     <Semestr>1</Semestr>
-    <Year>2</Year>
-    <NumberOfLections>6</NumberOfLections>
-    <NumberOfLaboratories>6</NumberOfLaboratories>
-    <TypeOfControl>зачет</TypeOfControl>
+    <Year>1</Year>
+    <NumberOfLections>15</NumberOfLections>
+    <NumberOfLaboratories>13</NumberOfLaboratories>
+    <TypeOfControl>экзамен</TypeOfControl>
   </Discipline>
   <Discipline>
     <lecturer>
-      <Chair>rgeg</Chair>
-      <SecondName>egeg</SecondName>
-      <Name>ge</Name>
-      <Patronymic>grq</Patronymic>
-      <Auditory>garg</Auditory>
+      <Chair>Жодино</Chair>
+      <SecondName>Юркевич</SecondName>
+      <Name>Кирой</Name>
+      <Patronymic>Александрович</Patronymic>
+      <Auditory>10</Auditory>
     </lecturer>
     <listOfLiterature>
-      <Name>egqg</Name>
-      <Author>rgr</Author>
-      <date>2021-02-08T13:29:58.7016803+03:00</date>
+      <Name>Учебник по выращиванию яблок</Name>
+      <Author>bebrae</Author>
+      <date>2021-01-30T18:42:36</date>
     </listOfLiterature>
-    <Name>1124141dgerher</Name>
-    <Semestr>1</Semestr>
-    <Year>2</Year>
-    <NumberOfLections>6</NumberOfLections>
-    <NumberOfLaboratories>6</NumberOfLaboratories>
-    <TypeOfControl>зачет</TypeOfControl>
+    <Name>Техноблог</Name>
+    <Semestr>2</Semestr>
+    <Year>3</Year>
+    <NumberOfLections>20</NumberOfLections>
+    <NumberOfLaboratories>20</NumberOfLaboratories>
+    <TypeOfControl>экзамен</TypeOfControl>
   </Discipline>
 </ArrayOfDiscipline>

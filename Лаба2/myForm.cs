@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Xml.Serialization;
 using System.IO;
+using System.Text.RegularExpressions;
 namespace Лаба2
 {
     public partial class myForm : Form
@@ -31,7 +32,7 @@ namespace Лаба2
             int i = 0;
 
             this.tabControl = new TabControl();
-            tabControl.Size = new Size(800, 400);
+            tabControl.Size = new Size(800, 250);
             tabControl.Location = new Point(1, 1);
 
             //tabPage.Text = "Page";
@@ -126,7 +127,10 @@ namespace Лаба2
                     label14.Text = dis.listOfLiterature.Author;
                     label14.Location = new Point(230, 77);
                     tabPages[i] = tabPage;
-
+                    foreach (Label lab in tabPage.Controls)
+                    {
+                        lab.AutoSize = true;
+                    }
                     i++;
                 }
                 tabControl.Controls.AddRange(tabPages);
@@ -135,6 +139,85 @@ namespace Лаба2
     this.tabControl});
             }
 
+        }
+
+        private void Search1_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text != "")
+            {
+                textBox1.BackColor = Color.White;
+                textBox2.BackColor = Color.White;
+                textBox3.BackColor = Color.White;
+
+                SearchResult page = new SearchResult(textBox1.Text);
+                textBox1.Text = "";
+                page.Show();
+            }
+            else
+                textBox1.BackColor = Color.Salmon;
+        }
+
+        private void Search2_Click(object sender, EventArgs e)
+        {
+            if (textBox2.Text != "")
+            {
+                textBox2.BackColor = Color.White;
+                textBox1.BackColor = Color.White;
+                textBox3.BackColor = Color.White;
+                SearchResult page = new SearchResult(Int32.Parse(textBox2.Text));
+                textBox2.Text = "";
+                page.Show();
+            }
+            else
+                textBox2.BackColor = Color.Salmon;
+        }
+
+        private void Search3_Click(object sender, EventArgs e)
+        {
+            if (textBox3.Text != "")
+            {
+                textBox3.BackColor = Color.White;
+                textBox2.BackColor = Color.White;
+                textBox1.BackColor = Color.White;
+                SearchResult page = new SearchResult(Int32.Parse(textBox3.Text), true);
+                textBox3.Text = "";
+                page.Show();
+            }
+            else
+                textBox3.BackColor = Color.Salmon;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(textBox4.Text != "")
+            {
+                SearchResult page = new SearchResult(textBox4.Text, true);
+                textBox4.Text = "";
+                page.Show();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (textBox5.Text != "")
+            {
+                SearchResult page = new SearchResult(textBox5.Text[0], (int)Char.GetNumericValue(textBox5.Text, 3) +1 );
+                textBox5.Text = "";
+                page.Show();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SearchResult page = new SearchResult(true, textBox6.Text[0]);
+            textBox6.Text = "";
+            page.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //SearchResult page = new SearchResult(textBox4.Text, textBox5[0], Int32.Parse(text));
+            //page.Show();
         }
     }
 }

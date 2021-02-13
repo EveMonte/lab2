@@ -255,5 +255,7 @@ namespace Лаба2
             myForm form = new myForm();
             form.Show();
         }
+
+
     }
 }
