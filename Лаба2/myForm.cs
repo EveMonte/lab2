@@ -248,5 +248,10 @@ namespace Лаба2
             page.sortBySpeciality();
             page.Show();
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Версия программы: 2.1.0.2\n Создатель: Савельев Дмитрий Витальевич", "О программе");
+        }
     }
 }
