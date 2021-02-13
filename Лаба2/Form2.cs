@@ -420,6 +420,7 @@ namespace Лаба2
                     i++;
                 }
                 tabControl1.Controls.AddRange(tabPages);
+                Serialization("SortBySecondName.xml", newList);
 
                 this.Controls.AddRange(new Control[] {
     this.tabControl1});
@@ -448,6 +449,7 @@ namespace Лаба2
                     i++;
                 }
                 tabControl1.Controls.AddRange(tabPages);
+                Serialization("SortByYear.xml", newList);
 
                 this.Controls.AddRange(new Control[] {
     this.tabControl1});
@@ -475,10 +477,20 @@ namespace Лаба2
                     tabPages[i] = CreateTabPage(dis, i);
                     i++;
                 }
+                Serialization("SortBySpeciality.xml", newList);
                 tabControl1.Controls.AddRange(tabPages);
 
                 this.Controls.AddRange(new Control[] {
     this.tabControl1});
+            }
+        }
+        public void Serialization(string name, IEnumerable<Discipline> listOfDisciplines)
+        {
+            List<Discipline> toSer  = listOfDisciplines.ToList();
+            XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
+            using (FileStream fileStream = new FileStream(name, FileMode.OpenOrCreate))
+            {
+                xser.Serialize(fileStream, toSer);
             }
         }
     }
