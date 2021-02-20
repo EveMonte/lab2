@@ -3,9 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ComponentModel.DataAnnotations;
 
 namespace Лаба2
 {
+    public class SemestrAttribute : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            if ((int)value < 1 || (int)value > 2)
+            {
+                this.ErrorMessage = "Wrong semestr!";
+                return false;
+            }
+            else return true;
+        }
+    }
+
     [Serializable]
     public class Book
     {
@@ -16,54 +30,68 @@ namespace Лаба2
     [Serializable]
     public class Lecturer
     {
+        [Required]
         public string Chair { get; set; }//such an interesting translation by Google Translator
+        [Required]
+        [Range(2, 20)]
         public string SecondName { get; set; }
+        [Required]
+        [Range(2, 20)]
         public string Name { get; set; }
+        [Required]
+        [Range(2, 20)]
         public string Patronymic { get; set; }
+        [Required]
+        [RegularExpression(@"^[0-5][0-6][0-9]$", ErrorMessage = "Wrong format!")]
         public string Auditory { get; set; }
     }
     [Serializable]
     public class Discipline
     {
-        private string name;
+        [Required]
+        [Range(2, 15)]
         public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get;
+            set;
         }
-        private int semestr;
+        [Semestr]
         public int Semestr
         {
-            get { return semestr; }
-            set { semestr = value; }
+            get;
+            set;
         }
-        private int year;
+        [Required]
         public int Year
         {
-            get { return year; }
-            set { year = value; }
+            get;
+            set;
         }
-        private string speciality;
+        [Required]
         public string Speciality
         {
-            get { return speciality; }
-            set { speciality = value; }
+            get;
+            set;
         }
-        private int numberOfLections;
+        [Required]
         public int NumberOfLections
         {
-            get { return numberOfLections; }
-            set { numberOfLections = value; }
+            get;
+            set;
         }
+        [Required]
         public int NumberOfLaboratories { get; set; }
+        [Required]
         public string TypeOfControl { get; set; }
-
+        [Required]
         public Lecturer lecturer = new Lecturer();
+        [Required]
         public Book listOfLiterature = new Book();
 
     }
     static class Program
     {
+        public static string Info = "";
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>

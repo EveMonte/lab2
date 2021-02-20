@@ -75,6 +75,7 @@ namespace Лаба2
             label8.Location = new Point(230, 47);
 
             label9.Text = "Отчество: " + dis.lecturer.Patronymic;
+
             label9.Location = new Point(230, 77);
 
             label10.Text = "Кафедра: " + dis.lecturer.Chair;
@@ -109,7 +110,7 @@ namespace Лаба2
             int count = 0;
             tabControl1 = new TabControl();
             tabControl1.Size = new Size(800, 400);
-            tabControl1.Location = new Point(1, 1);
+            tabControl1.Location = new Point(1, 40);
 
             //tabPage.Text = "Page";
             XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
@@ -151,7 +152,7 @@ namespace Лаба2
             int count = 0;
             tabControl1 = new TabControl();
             tabControl1.Size = new Size(800, 400);
-            tabControl1.Location = new Point(1, 1);
+            tabControl1.Location = new Point(1, 40);
 
             //tabPage.Text = "Page";
             XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
@@ -193,7 +194,7 @@ namespace Лаба2
             int count = 0;
             tabControl1 = new TabControl();
             tabControl1.Size = new Size(800, 400);
-            tabControl1.Location = new Point(1, 1);
+            tabControl1.Location = new Point(1, 40);
 
             //tabPage.Text = "Page";
             XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
@@ -236,7 +237,7 @@ namespace Лаба2
             int count = 0;
             tabControl1 = new TabControl();
             tabControl1.Size = new Size(800, 400);
-            tabControl1.Location = new Point(1, 1);
+            tabControl1.Location = new Point(1, 40);
 
             //tabPage.Text = "Page";
             XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
@@ -249,7 +250,6 @@ namespace Лаба2
                     if (r.IsMatch(dis.Name))
                     {
                         MatchCollection match = new Regex(ch.ToString()).Matches(dis.Name);
-
                         count += match.Count;
                     }
                 }
@@ -267,7 +267,7 @@ namespace Лаба2
             int count = 0;
             tabControl1 = new TabControl();
             tabControl1.Size = new Size(800, 400);
-            tabControl1.Location = new Point(1, 1);
+            tabControl1.Location = new Point(1, 40);
 
             //tabPage.Text = "Page";
             XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
@@ -313,7 +313,7 @@ namespace Лаба2
             int count = 0;
             tabControl1 = new TabControl();
             tabControl1.Size = new Size(800, 400);
-            tabControl1.Location = new Point(1, 1);
+            tabControl1.Location = new Point(1, 40);
 
             //tabPage.Text = "Page";
             XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
@@ -360,7 +360,7 @@ namespace Лаба2
             int count = 0;
             tabControl1 = new TabControl();
             tabControl1.Size = new Size(800, 400);
-            tabControl1.Location = new Point(1, 1);
+            tabControl1.Location = new Point(1, 40);
 
             //tabPage.Text = "Page";
             XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
@@ -401,7 +401,7 @@ namespace Лаба2
         {
             tabControl1 = new TabControl();
             tabControl1.Size = new Size(800, 400);
-            tabControl1.Location = new Point(1, 1);
+            tabControl1.Location = new Point(1, 40);
             int i = 0;
 
             //tabPage.Text = "Page";
@@ -430,7 +430,7 @@ namespace Лаба2
         {
             tabControl1 = new TabControl();
             tabControl1.Size = new Size(800, 400);
-            tabControl1.Location = new Point(1, 1);
+            tabControl1.Location = new Point(1, 40);
             int i = 0;
 
             //tabPage.Text = "Page";
@@ -492,6 +492,21 @@ namespace Лаба2
             {
                 xser.Serialize(fileStream, toSer);
             }
+        }
+
+        private void поФамилииToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sortBySecondName();
+        }
+
+        private void поГодуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sortByYear();
+        }
+
+        private void поСпециальностиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sortBySpeciality();
         }
     }
 }

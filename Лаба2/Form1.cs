@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml.Serialization;
 using System.Threading;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace Лаба2
 {
@@ -39,7 +39,7 @@ namespace Лаба2
                 else
                 {
                     DisciplineName.BackColor = Color.Salmon;
-                    throw new Exception("Please enter Name!");
+                    //throw new Exception("Please enter Name!");
                 }
             }
             catch (Exception ex)
@@ -48,7 +48,8 @@ namespace Лаба2
             }
             discipline.NumberOfLaboratories = NumberOfLaboratories.Value;
             discipline.NumberOfLections = NumberOfLections.Value;
-            discipline.Semestr = Int32.Parse(Semestr.Text);
+            if(Semestr.SelectedItem != null)
+                discipline.Semestr = Int32.Parse(Semestr.Text);
             discipline.Year = (int)Year.Value;
 
             try
@@ -65,7 +66,7 @@ namespace Лаба2
                 }
                 else if (!Offset.Checked && !Exam.Checked)
                 {
-                    throw new Exception("Please click on radio-button!");
+                    //throw new Exception("Please click on radio-button!");
                 }
             }
             catch (Exception ex)
@@ -85,7 +86,7 @@ namespace Лаба2
                 else
                 {
                     SecondName.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box/boxes!");
+                    //throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch(Exception ex)
@@ -102,7 +103,7 @@ namespace Лаба2
                 else
                 {
                     NameOfLecturer.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box/boxes!");
+                    //throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
@@ -120,7 +121,7 @@ namespace Лаба2
                 else
                 {
                     Patronymic.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box/boxes!");
+                    //throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
@@ -138,7 +139,7 @@ namespace Лаба2
                 else
                 {
                     Chair.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box/boxes!");
+                    //throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
@@ -156,7 +157,7 @@ namespace Лаба2
                 else
                 {
                     Auditory.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box/boxes!");
+                    //throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
@@ -178,7 +179,7 @@ namespace Лаба2
                 else
                 {
                     NameOfBook.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box/boxes!");
+                    //throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
@@ -195,7 +196,7 @@ namespace Лаба2
                 else
                 {
                     Author.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box/boxes!");
+                    //throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
@@ -212,7 +213,7 @@ namespace Лаба2
                 else
                 {
                     //NameOfBook.BackColor = Color.Salmon;
-                    throw new Exception("Fill the text box/boxes!");
+                    //throw new Exception("Fill the text box/boxes!");
                 }
             }
             catch (Exception ex)
@@ -222,13 +223,33 @@ namespace Лаба2
             discipline.listOfLiterature = book;
 
             #endregion
+            var result = new List<ValidationResult>();
+            var context = new ValidationContext(discipline);
+            ErrorLabel.Text = "";
+            if (!Validator.TryValidateObject(discipline, context, result, true))
+            {
+                foreach(var error in result)
+                {
+                    ErrorLabel.Text += error.ErrorMessage + "\n";
+                }
+            }
+            Lecturer lec = discipline.lecturer;
+            var result2 = new List<ValidationResult>();
+            var context2 = new ValidationContext(lec);
+            if (!Validator.TryValidateObject(lec, context2, result2, true))
+            {
+                foreach (var error in result2)
+                {
+                    ErrorLabel.Text += error.ErrorMessage + "\n";
+                }
+            }
 
             listOfDisciplines.Add(discipline);
-            XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
+            /*XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
             using (FileStream fileStream = new FileStream("Forms.xml", FileMode.OpenOrCreate))
             {
                 xser.Serialize(fileStream, listOfDisciplines);
-            }
+            }*/
         }
 
         private void NumberOfLections_Scroll(object sender, EventArgs e)
@@ -257,5 +278,14 @@ namespace Лаба2
         }
 
 
+
+        private void очиститьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Control box in this.Controls)
+            {
+                if (box is TextBox)
+                    box.Text = "";
+            }
+        }
     }
 }

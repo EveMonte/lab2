@@ -19,29 +19,32 @@ namespace Лаба2
         private TabPage tabPage;
         public myForm()
         {
-            Tabs();
+            int i = Tabs();
             InitializeComponent();
+            toolStripStatusLabel1.Text = "Количество элементов: " + i.ToString();
+
+
         }
 
 
 
 
-        private void Tabs()
+        private int Tabs()
         {
 
             int i = 0;
-
+            int count;
             this.tabControl = new TabControl();
             tabControl.Size = new Size(800, 250);
-            tabControl.Location = new Point(1, 1);
-
+            tabControl.Location = new Point(1, 40);
+            Program.Info = "Создание TabPages";
             //tabPage.Text = "Page";
             XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
             using (FileStream fileStream = new FileStream("Forms.xml", FileMode.OpenOrCreate))
             {
                 List<Discipline> newListOfDisciplines = (List<Discipline>)xser.Deserialize(fileStream);
                 Control[] tabPages = new Control[newListOfDisciplines.Count];
-
+                count = newListOfDisciplines.Count;
                 foreach (Discipline dis in newListOfDisciplines)
                 {
                     tabPage = new TabPage();
@@ -138,17 +141,16 @@ namespace Лаба2
                 this.Controls.AddRange(new Control[] {
     this.tabControl});
             }
-
+            return count;
         }
 
         private void Search1_Click(object sender, EventArgs e)
         {
+            Program.Info = "Поиск по лектору";
             if (textBox1.Text != "")
             {
                 textBox1.BackColor = Color.White;
-                textBox2.BackColor = Color.White;
-                textBox3.BackColor = Color.White;
-
+               
                 SearchResult page = new SearchResult();
                 page.Tabs(textBox1.Text);
                 textBox1.Text = "";
@@ -160,6 +162,8 @@ namespace Лаба2
 
         private void Search2_Click(object sender, EventArgs e)
         {
+            Program.Info = "Поиск по семестру";
+
             if (textBox2.Text != "")
             {
                 textBox2.BackColor = Color.White;
@@ -176,6 +180,8 @@ namespace Лаба2
 
         private void Search3_Click(object sender, EventArgs e)
         {
+            Program.Info = "Поиск по курсу";
+
             if (textBox3.Text != "")
             {
                 textBox3.BackColor = Color.White;
@@ -193,7 +199,9 @@ namespace Лаба2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(textBox4.Text != "")
+            Program.Info = "Поиск по диапазону";
+
+            if (textBox4.Text != "")
             {
                 SearchResult page = new SearchResult();
                 page.Tabs(textBox4.Text, true);
@@ -228,21 +236,21 @@ namespace Лаба2
             page.Show();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        public void button5_Click(object sender, EventArgs e)
         {
             SearchResult page = new SearchResult();
             page.sortBySecondName();
             page.Show();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        public void button6_Click(object sender, EventArgs e)
         {
             SearchResult page = new SearchResult();
             page.sortByYear();
             page.Show();
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        public void button7_Click(object sender, EventArgs e)
         {
             SearchResult page = new SearchResult();
             page.sortBySpeciality();
@@ -252,6 +260,55 @@ namespace Лаба2
         private void button8_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Версия программы: 2.1.0.2\n Создатель: Савельев Дмитрий Витальевич", "О программе");
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = DateTime.Now.ToString();
+            toolStripStatusLabel5.Text = Program.Info;
+        }
+
+        private void очиститьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach(Control box in this.Controls)
+            {
+                if(box is TextBox)
+                    box.Text = "";
+            }
+        }
+
+        private void toolStripStatusLabel4_Click(object sender, EventArgs e)
+        {
+            statusStrip1.Hide();
+            labelShow.Text = "Показать";
+        }
+
+        private void labelShow_Click(object sender, EventArgs e)
+        {
+            statusStrip1.Show();
+            this.Text = "";
+        }
+
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.Info = "Удаление TabPage";
+            if(tabControl.TabPages.Count != 0)
+                tabControl.TabPages.Remove(tabControl.SelectedTab);
+        }
+
+        private void впередToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.Info = "Вперед";
+
+            this.tabControl.SelectedIndex = ++this.tabControl.SelectedIndex;
+        }
+
+        private void назадToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.Info = "Назад";
+            if(this.tabControl.SelectedIndex != 0)
+                this.tabControl.SelectedIndex = --this.tabControl.SelectedIndex;
+
         }
     }
 }
